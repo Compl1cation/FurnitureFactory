@@ -1,0 +1,72 @@
+﻿@model FurnitureFactory.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ApplicationUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bulstat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bulstat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DDSReg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DDSReg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,36 @@
+﻿@model FurnitureFactory.Models.ApplicationUser
+@{
+    ViewBag.Title = "UpdateAvatar";
+}
+<div class="content">
+    <h2>Update Avatar</h2>
+
+    @using (Html.BeginForm("UpdateAvatar", "Manage", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        if (Model.Files.Any(f => f.FileType == FileType.Avatar))
+        {
+            <div class="form-group">
+                <div class="control-label col-md-12">
+                </div>
+                <img src="~/Content/UserFiles/@Model.UserName/@Model.Files.First(f => f.FileType == FileType.Avatar).Id" alt="poster" id="avatar" />
+            </div>
+        }
+
+        <div class="form-horizontal width200">
+            <p class=" floatLeft">Upload Avatar</p>
+            <br />
+            <p class="floatLeft red"> @ViewBag.ErrorMessage </p>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="file" id="avatar" name="avatar" />
+                </div>
+                <input type="submit" value="Save" class="btn btn-default floatRight" />
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="mebeli.com" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\PractRepository\\FurnitureFactory\\FurnitureFactory\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\PractRepository\\FurnitureFactory\\FurnitureFactory\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="FurnitureFactoryDB-Web.config Connection String" description="" value="Data Source=DRUSINOV-PC\SQLEXPRESS;Initial Catalog=MebeliDB;User ID=DRusinov;Password=12345;Connect Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\PractRepository\\FurnitureFactory\\FurnitureFactory\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FurnitureFactoryDB']/@connectionString" />
+  </parameter>
+</parameters>

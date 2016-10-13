@@ -1,0 +1,88 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.searchBox {
+padding:8px 15px;
+background:rgba(50, 50, 50, 0.2);
+border:0px solid #dbdbdb;
+}
+
+.button {
+position:relative;
+padding:6px 15px;
+left:-8px;
+border:2px solid #207cca;
+background-color:#207cca;
+color:#fafafa;
+font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.button:hover  {
+background-color:#fafafa;
+color:#207cca;
+}
+
+.shopping {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    max-width:900px;
+}
+
+.shopping td, .shopping th {
+    padding: 8px;
+}
+
+.shopping tr:nth-child(even){background-color: #f2f2f2;}
+
+.shopping tr:hover {background-color: #ddd;}
+
+.shopping th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+        border:none;
+	}
+	
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	td { 
+		position: relative;
+        text-align: center;
+	}
+}

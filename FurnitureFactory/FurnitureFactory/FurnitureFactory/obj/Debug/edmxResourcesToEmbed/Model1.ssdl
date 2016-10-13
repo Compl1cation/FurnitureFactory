@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FurnitureFactoryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FurnitureOrders">
+    <Key>
+      <PropertyRef Name="FurnitureId" />
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="FurnitureId" Type="int" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="TotalPrice" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="RecieptNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="ProductOrders">
+    <Key>
+      <PropertyRef Name="Product_Id" />
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Product_Id" Type="int" Nullable="false" />
+    <Property Name="Order_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PricePerUnit" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="Weight" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="BarCode" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Bulstat" Type="nvarchar" MaxLength="12" />
+    <Property Name="DDSReg" Type="bit" Nullable="false" />
+    <Property Name="MOL" Type="nvarchar" MaxLength="255" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_FurnitureOrders_dbo_Orders_OrderId">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FurnitureOrders" Type="Self.FurnitureOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FurnitureOrders">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FurnitureOrders_dbo_Products_FurnitureId">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FurnitureOrders" Type="Self.FurnitureOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FurnitureOrders">
+        <PropertyRef Name="FurnitureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Orders_dbo_Users_Client_Id">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ProductOrders_dbo_Orders_Order_Id">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrders">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ProductOrders_dbo_Products_Product_Id">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrders">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserClaims_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserClaims" Type="Self.UserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserLogins_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserLogins" Type="Self.UserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserRoles_dbo_Roles_RoleId">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserRoles_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FurnitureFactoryDBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FurnitureOrders" EntityType="Self.FurnitureOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductOrders" EntityType="Self.ProductOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_FurnitureOrders_dbo_Orders_OrderId" Association="Self.FK_dbo_FurnitureOrders_dbo_Orders_OrderId">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="FurnitureOrders" EntitySet="FurnitureOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FurnitureOrders_dbo_Products_FurnitureId" Association="Self.FK_dbo_FurnitureOrders_dbo_Products_FurnitureId">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="FurnitureOrders" EntitySet="FurnitureOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Orders_dbo_Users_Client_Id" Association="Self.FK_dbo_Orders_dbo_Users_Client_Id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ProductOrders_dbo_Orders_Order_Id" Association="Self.FK_dbo_ProductOrders_dbo_Orders_Order_Id">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="ProductOrders" EntitySet="ProductOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ProductOrders_dbo_Products_Product_Id" Association="Self.FK_dbo_ProductOrders_dbo_Products_Product_Id">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductOrders" EntitySet="ProductOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserClaims_dbo_Users_UserId" Association="Self.FK_dbo_UserClaims_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserClaims" EntitySet="UserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserLogins_dbo_Users_UserId" Association="Self.FK_dbo_UserLogins_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserLogins" EntitySet="UserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserRoles_dbo_Roles_RoleId" Association="Self.FK_dbo_UserRoles_dbo_Roles_RoleId">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserRoles_dbo_Users_UserId" Association="Self.FK_dbo_UserRoles_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

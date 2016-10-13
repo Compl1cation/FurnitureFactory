@@ -1,0 +1,119 @@
+﻿@model IEnumerable<FurnitureFactory.Models.Furniture>
+@using FurnitureFactory.Models.ViewModels;
+
+@{
+    ViewBag.Title = "Index";
+    SortingInfo info = ViewBag.SortingInfo;
+    info.SortDirection = ViewBag.Direction;
+}
+
+<div id="productList">
+    @using (Ajax.BeginForm("Index", "BrowseFurniture",
+                                new AjaxOptions
+                                {
+                                    InsertionMode = InsertionMode.Replace,
+                                    UpdateTargetId = "productList",
+                                    OnFailure = "pagingFailed",
+                                    HttpMethod = "GET"
+                                },
+
+                                new { id ="sortForm"}))
+    {
+        @Html.Hidden("SortField", info.SortField)
+        <input name="SortDirection" id="SortDirection" type="hidden" value="@info.SortDirection">
+        @Html.Hidden("PageCount", info.PageCount)
+        @Html.Hidden("PageSize", info.PageSize)
+        @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
+        @Html.Hidden("SearchTerm", info.SearchTerm)
+
+
+        if (info.CurrentPageIndex == 1)
+        {
+            <script>
+                $(document).ready(function () {
+                    $(".previous").attr("disabled", "disabled").addClass("button-page-disabled");
+                });
+            </script>
+        }
+        if (info.CurrentPageIndex == 10)
+        {
+            <script>
+                $(document).ready(function () {
+                    $(".next").attr("disabled", "disabled").addClass("button-page-disabled");;
+                });
+            </script>
+        }
+
+
+        <button name="pageIndex" value="@(info.CurrentPageIndex-1)" type="submit" class="previous button-page inline">Previous</button>
+
+        for (var i = 1; i <= info.PageCount; i++)
+        {
+            if (i == info.CurrentPageIndex)
+            {
+                <span class="currentPage inline">@(i)</span>
+            }
+            else
+            {
+                <input type="submit" value="@i" name="pageIndex" class="pager button-page inline" />
+            }
+        }
+
+        <button name="pageIndex" value="@(info.CurrentPageIndex+1)" type="submit" class="next button-page inline">Next</button>
+
+                <table class="table shopping">
+                    <tr>
+                        <th class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="submit" name="sortField" class="thdr" value="Name"> Name </button>
+                        </th>
+                        <th class="col-lg-1 col-md-1 col-sm-1">
+                            <button type="submit" name="sortField" class="thdr" value="Price">Price</button>
+                        </th>
+                        <th class="col-lg-5 col-md-5 col-sm-5">
+                            <button type="submit" name="sortField" class="thdr" value="Description">Description</button>
+                        </th>
+                        <th class="col-lg-2 col-md-2 col-sm-2">
+                            <button type="submit" name="sortField" class="thdr" value="Weight">Weight</button>
+                        </th>
+                        <th class="col-lg-2 col-md-2 col-sm-2">
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="col-lg-2 col-md-2 col-sm-2">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td class="col-lg-1 col-md-1 col-sm-1">
+                                @Html.Raw("€")@Html.DisplayFor(modelItem => item.PricePerUnit)
+                            </td>
+                            <td class="col-lg-5 col-md-5 col-sm-5">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td class="col-lg-2 col-md-2 col-sm-2">
+                                @Html.DisplayFor(modelItem => item.Weight)@Html.Raw(" kg")
+                            </td>
+                            <td class="col-lg-2 col-md-2 col-sm-2">
+                                <a class="addToCart" data-prod-id="@item.Id" data-prod-name="@item.Name" data-prod-pricePerUnit="@item.PricePerUnit" href="@Url.Action("Index", "ShoppingCart")" title="Add to Cart"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <button name="pageIndex" value="@(info.CurrentPageIndex-1)" type="submit" class="previous button-page inline"> Previous </button>
+                for (var i = 1; i <= info.PageCount; i++)
+                {
+                if (i == info.CurrentPageIndex)
+                {
+                    <span class="currentPage inline">@(i)</span>
+                }
+                else
+                {
+                    <input type="submit" value="@i" name="pageIndex" class="pager button-page inline" />
+                }
+                }
+
+                <button name="pageIndex" value="@(info.CurrentPageIndex+1)" type="submit" class="next button-page inline">Next</button>
+                }
+            </div>

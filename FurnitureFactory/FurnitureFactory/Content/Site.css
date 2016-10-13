@@ -1,0 +1,269 @@
+﻿body {
+    padding-top: 50px;
+    background-image:url(Images/wallpaper.png);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size:cover;
+    height:100%;
+}
+
+html,  #wrapper { height: 100%; }
+body > #wrapper { height: auto; min-height: 100%; }
+
+#wrapper {
+padding-bottom:5em;
+}
+
+footer {
+clear: both;
+ position: relative;
+ z-index: 10;
+ height: 5em;
+ margin-top: -5em;
+ background: #313131;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+padding:20px 20px 20px 20px;
+background-color:rgba(217, 179, 140, 0.7);
+}
+
+.center
+{
+text-align:center;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.whiteTrebouchet {
+color:white;
+font-family:Trebuchet MS, sans-serif;
+}
+
+.red {
+font-weight:bold;
+color:rgb(150, 0, 0);
+}
+
+.moveLeft {
+position:relative;
+left:-10px;
+}
+.floatLeft {
+float:left;
+}
+
+.floatRight {
+float:right;
+}
+
+.width200 {
+width:200px;
+}
+
+h2 {
+margin-top:50px;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.header {
+color:white;
+background:none;
+border:none;
+}
+
+.header:hover, .header:active {
+  color:gold;
+}
+
+#avatar {
+max-width:200px;
+max-height:400px;
+}
+
+#miniAvatar {
+max-width:50px;
+max-height:100px;
+}
+
+.button-page {
+background-color:#ff9933;
+color:white;
+padding:5px 10px;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+margin:0px;
+float:left;
+border:none;
+font-weight:bold;
+margin-bottom:10px;
+margin-top:10px;
+opacity:0.8;
+}
+
+.button-page:hover, .button-page:link {
+text-decoration:none;
+background-color:white;
+color:#ff9933;
+font-weight:bold;
+margin:0px;
+float:left;
+border:none;
+margin-bottom:10px;
+margin-top:10px;
+}
+
+.currentPage {
+background-color: #663300;
+color:white;
+padding:5px 10px;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+margin:0px;
+float:left;
+border:none;
+font-weight:bold;
+margin-bottom:10px;
+margin-top:10px;
+}
+
+.button-page:disabled  {
+background-color:#d9d9d9;
+opacity:0.5;
+}
+
+.previous, .next{
+background-color:#ccffb3;
+color:black;
+padding:5px 10px;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+margin:0px;
+float:left;
+border:none;
+font-weight:bold;
+margin-bottom:10px;
+margin-top:10px;
+opacity:1!important;
+}
+
+.previous:hover, .next:hover, .previous:link, .next:link {
+color:black;
+}
+
+.thdr {
+background:none!important;
+border:none; 
+padding:0!important;
+font: inherit;
+/*border is optional*/ 
+cursor: pointer;
+}
+
+.thdr:hover, .thdr:link {
+ color:white;
+    }
+
+.chatBox {
+background-color: white;
+border:1px solid black;
+padding:20px;
+margin-top: 150px;
+max-width:900px;
+opacity:0.75;
+}
+
+#discussion {
+list-style-type:none;
+}
+
+.searchBox {
+padding:8px 15px;
+background:white;
+opacity:0.7;
+border:1px solid black;
+}
+
+.button {
+position:relative;
+padding:7px 15px;
+left:-5px;
+border:2px solid #207cca;
+background-color:#207cca;
+color:#fafafa;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.button:hover  {
+background-color:#fafafa;
+color:#207cca;
+}
+
+.shopping {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border: 1px solid black;
+border-collapse:inherit;
+width: 100%;
+width:900px;
+margin-bottom:0px;
+}
+
+.widthLarge {
+width:1100px!important;
+}
+.shopping td, .shopping th {
+padding: 8px;
+}
+
+.shopping tr {
+min-width:900px;
+width:100%;
+background-color:#ffffe6;
+opacity: 0.85;
+}
+
+.shopping tr:nth-child(even){background-color: white}
+
+.shopping tr:hover {background-color:cadetblue;}
+
+.shopping th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #4CAF50;
+color: #e6e6e6;
+min-width:110px;
+}
+
+.pager {
+display:inline-block;
+}
+
+
+/*@media only screen and (max-width: 600px) {
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+        border:none;
+	}
+	
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	td { 
+		position: relative;
+        text-align: center;
+	}
+}*/

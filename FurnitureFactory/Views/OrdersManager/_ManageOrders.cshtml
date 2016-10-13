@@ -1,0 +1,121 @@
+﻿@model IEnumerable<FurnitureFactory.Models.Order>
+@using FurnitureFactory.Models.ViewModels;
+
+@{
+    ViewBag.Title = "Index";
+    SortingInfo info = ViewBag.SortingInfo;
+    info.SortDirection = ViewBag.Direction;
+}
+
+<div id="orderList">
+        @using (Ajax.BeginForm("Index", "OrderManager",
+                                 new AjaxOptions
+                                 {
+                                     InsertionMode = InsertionMode.Replace,
+                                     UpdateTargetId = "orderList",
+                                     OnFailure = "pagingFailed",
+                                     HttpMethod = "GET"
+                                 },
+                                 new { id = "sortForm" }))
+        {
+        @Html.Hidden("SortField", info.SortField)
+        <input name="SortDirection" id="SortDirection" type="hidden" value="@info.SortDirection">
+        @Html.Hidden("PageCount", info.PageCount)
+        @Html.Hidden("PageSize", info.PageSize)
+        @Html.Hidden("CurrentPageIndex", info.CurrentPageIndex)
+        @Html.Hidden("SearchTerm", info.SearchTerm)
+
+
+        if (info.CurrentPageIndex == 1)
+        {
+            <script>
+                $(document).ready(function () {
+                    $(".previous").attr("disabled", "disabled").addClass("button-page-disabled");
+                });
+            </script>
+        }
+        if (info.CurrentPageIndex == 10)
+        {
+            <script>
+                $(document).ready(function () {
+                    $(".next").attr("disabled", "disabled").addClass("button-page-disabled");;
+                });
+            </script>
+        }
+
+        <button name="pageIndex" value="@(info.CurrentPageIndex-1)" type="submit" class="previous button-page inline">Previous</button>
+
+        for (var i = 1; i <= info.PageCount; i++)
+        {
+            if (i == info.CurrentPageIndex)
+            {
+                <span class="currentPage inline">@(i)</span>
+            }
+            else
+            {
+                <input type="submit" value="@i" name="pageIndex" class="pager button-page inline" />
+            }
+        }
+
+        <button name="pageIndex" value="@(info.CurrentPageIndex+1)" type="submit" class="next button-page inline">Next</button>
+
+        <table class="table shopping widthLarge">
+            <tr>
+                <th class="col-lg-2 col-md-2 col-sm-2">
+                    <button type="submit" name="sortField" class="thdr" value="ClientName">Client Name</button>
+                </th>
+                <th class="col-lg-3 col-md-3 col-sm-3">
+                    <button type="submit" name="sortField" class="thdr" value="Date">Date</button>
+                </th>
+                <th class="col-lg-1 col-md-1 col-sm-1">
+                    <button type="submit" name="sortField" class="thdr" value="TotalPrice">Total Price</button>
+                </th>
+                <th class="col-lg-3 col-md-3 col-sm-3">
+                    <button type="submit" name="sortField" class="thdr" value="RecieptNumber">Reciept Number</button>
+                </th>
+                <th class="col-lg-3 col-md-3 col-sm-3">
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col-lg-2 col-md-2 col-sm-2">
+                        @Html.DisplayFor(modelItem => item.Client.UserName)
+                    </td>
+                    <td class="col-lg-3 col-md-3 col-sm-3">
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td class="col-lg-1 col-md-1 col-sm-1">
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>
+                    <td class="col-lg-3 col-md-3 col-sm-3">
+                        @Html.DisplayFor(modelItem => item.RecieptNumber)
+                    </td>
+
+                    <td class="col-lg-3 col-md-3 col-sm-3">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <button name="pageIndex" value="@(info.CurrentPageIndex-1)" type="submit" class="previous button-page inline"> Previous </button>
+        for (var i = 1; i <= info.PageCount; i++)
+        {
+            if (i == info.CurrentPageIndex)
+            {
+                <span class="currentPage inline">@(i)</span>
+            }
+            else
+            {
+                <input type="submit" value="@i" name="pageIndex" class="pager button-page inline" />
+            }
+        }
+
+        <button name="pageIndex" value="@(info.CurrentPageIndex+1)" type="submit" class="next button-page inline">Next</button>
+    }
+</div>
+

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<FurnitureFactory.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="whiteTrebouchet">Order Manager</h2>
+
+<form method="post" action="@Url.Action("Index")"
+      data-prods-ajax="true" data-prods-target="#orderList">
+
+    <input type="search" class="searchBox" name="searchTerm" data-autocomplete-source="@Url.Action("Autocomplete", "OrdersManager")" />
+    <input type="submit" class="button" value="Search by Name" />
+</form>
+
+@Html.Partial("_ManageOrders", Model)
+

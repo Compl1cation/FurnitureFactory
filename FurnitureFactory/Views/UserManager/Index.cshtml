@@ -1,0 +1,16 @@
+﻿@model IEnumerable<FurnitureFactory.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="whiteTrebouchet">User Manager</h2>
+
+<form method="post" action="@Url.Action("Index")"
+      data-prods-ajax="true" data-prods-target="#userList">
+
+    <input type="search" class="searchBox" name="searchTerm" data-autocomplete-source="@Url.Action("Autocomplete", "UserManager")" />
+    <input type="submit" class="button" value="Search by Name" />
+</form>
+
+@Html.Partial("_ManageUsers", Model)

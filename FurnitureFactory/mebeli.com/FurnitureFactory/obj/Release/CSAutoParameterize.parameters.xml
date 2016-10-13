@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="FurnitureFactoryDB-Web.config Connection String" description="FurnitureFactoryDB Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\deyan.rusinov\Documents\FurnitureFactoryDB.mdf;Integrated Security=True;Connect Timeout=30;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\PractRepository\\FurnitureFactory\\FurnitureFactory\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FurnitureFactoryDB']/@connectionString" />
+  </parameter>
+</parameters>
